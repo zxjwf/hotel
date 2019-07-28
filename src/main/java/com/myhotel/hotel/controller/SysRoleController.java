@@ -29,5 +29,24 @@ public class SysRoleController {
         PageObject<SysRole> pageObject=sysRoleService.findPageObjects(name,pageCurrent);
         return new JsonResult(pageObject);
     }
+    @RequestMapping("doDeleteObject.do")
+    @ResponseBody
+    public JsonResult doDeleteObject(Integer id){
+        sysRoleService.deleteObject(id);
+        return  new JsonResult("delete Ok");
+    }
+    @RequestMapping("doRoleEditUI.do")
+    public String doRoleEditUI(){
+        return "pages/sys/role_edit";
+    }
 
+
+    @RequestMapping("doSaveObject.do")
+    @ResponseBody
+    public JsonResult doSaveObject(SysRole entity,Integer[] menuIds){
+
+        sysRoleService.saveObject(entity,menuIds);
+        return new JsonResult("save ok");
+
+    }
 }

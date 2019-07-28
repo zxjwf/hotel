@@ -8,7 +8,7 @@ public class SysRole implements Serializable {
     private Integer id;
     private String name;
     private String note;
-    private Date createdTIme;
+    private Date createdTime;
     private Date modifiedTime;
     private String createdUser;
     private String modifiedUser;
@@ -37,12 +37,12 @@ public class SysRole implements Serializable {
         this.note = note;
     }
 
-    public Date getCreatedTIme() {
-        return createdTIme;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreatedTIme(Date createdTIme) {
-        this.createdTIme = createdTIme;
+    public void setCreatedTime(Date createdTIme) {
+        this.createdTime = createdTIme;
     }
 
     public Date getModifiedTime() {
@@ -67,5 +67,18 @@ public class SysRole implements Serializable {
 
     public void setModifiedUser(String modifiedUser) {
         this.modifiedUser = modifiedUser;
+    }
+
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", note='" + note + '\'' +
+                ", createdTime=" + createdTime +
+                ", modifiedTime=" + modifiedTime +
+                ", createdUser='" + createdUser + '\'' +
+                ", modifiedUser='" + modifiedUser + '\'' +
+                '}';
     }
 }

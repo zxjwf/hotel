@@ -15,4 +15,8 @@ public interface SysRoleMapper {
     );
 
     int getRowCount(@Param("name") String name);
+
+    int deleteObject(@Param("id") Integer id);
+
+    int insertObject(SysRole entity);
 }
