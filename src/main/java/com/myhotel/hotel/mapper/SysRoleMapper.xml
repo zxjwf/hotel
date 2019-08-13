@@ -26,7 +26,7 @@
         insert into sys_roles(id,name,note,createdTime,modifiedTime,
               createdUser,modifiedUser)
               values
-              (null,#{name},#{note},#{createdTime}),#{modifiedTime},#{createdUser},#{modifiedUser})
+              (null,#{name},#{note},#{createdTime},#{modifiedTime},#{createdUser},#{modifiedUser})
     </insert>
     <sql id="queryWhereId">
         <where>
