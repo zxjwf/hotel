@@ -20,7 +20,9 @@ import static java.time.LocalDateTime.now;
 public class SysRoleServiceImpl implements SysRoleService {
     @Autowired
     private SysRoleMapper sysRoleMapper;
+    @Autowired
     private SysRoleMenuMapper sysRoleMenuMapper;
+    @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
     @Override
     public PageObject<SysRole> findPageObjects(String name, Integer pageCurrent) {
@@ -60,16 +62,12 @@ public class SysRoleServiceImpl implements SysRoleService {
             throw new ServiceException("角色名不能为空");
         if(menuIds==null||menuIds.length==0)
             throw new ServiceException("必须为角色赋予权限");
-        int rows=sysRoleMapper.insertObject(entity);
         entity.setCreatedTime(new Date());
         entity.setModifiedTime(new Date());
         entity.setCreatedUser("user");
         entity.setModifiedUser("user");
-        System.out.println(entity.toString());
-        System.out.println(menuIds.toString());
+        int rows=sysRoleMapper.insertObject(entity);
         sysRoleMenuMapper.insertObject(entity.getId(),menuIds);
-
-
         return rows;
     }
 }
