@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("/role/")
 
@@ -48,5 +50,20 @@ public class SysRoleController {
         sysRoleService.saveObject(entity,menuIds);
         return new JsonResult("save ok");
 
+    }
+
+    @RequestMapping("doFindObjectById.do")
+    @ResponseBody
+    public JsonResult doFindObjectById(Integer id){
+        Map<String,Object> map=sysRoleService.doFindObjectById(id);
+        return new JsonResult(map);
+    }
+    @RequestMapping("doUpdateObject.do")
+    @ResponseBody
+    public JsonResult doUpdateObject(
+            SysRole entity,
+            Integer[] menuIds){
+        sysRoleService.updateObject(entity,menuIds);
+        return  new JsonResult("update ok");
     }
 }

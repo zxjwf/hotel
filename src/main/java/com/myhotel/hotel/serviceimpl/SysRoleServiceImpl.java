@@ -2,6 +2,7 @@ package com.myhotel.hotel.serviceimpl;
 
 import com.myhotel.common.vo.PageObject;
 import com.myhotel.common.vo.ServiceException;
+import com.myhotel.hotel.mapper.SysMenuMapper;
 import com.myhotel.hotel.mapper.SysRoleMapper;
 import com.myhotel.hotel.mapper.SysRoleMenuMapper;
 import com.myhotel.hotel.mapper.SysUserRoleMapper;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.time.LocalDateTime.now;
 
@@ -67,6 +70,36 @@ public class SysRoleServiceImpl implements SysRoleService {
         entity.setCreatedUser("user");
         entity.setModifiedUser("user");
         int rows=sysRoleMapper.insertObject(entity);
+        sysRoleMenuMapper.insertObject(entity.getId(),menuIds);
+        return rows;
+    }
+
+    @Override
+    public Map<String,Object> doFindObjectById(Integer id) {
+        if(id==null||id<1)
+            throw new IllegalArgumentException("id为空");
+        SysRole sysRole=sysRoleMapper.doFindObjectById(id);
+        if (sysRole==null)
+            throw new ServiceException("没有找到数据");
+        List<Integer> menuIds=
+                sysRoleMenuMapper.findMenuIdsByRoleId(id);
+        Map<String,Object> map=new HashMap<>();
+        map.put("role",sysRole);
+        map.put("menuIds",menuIds);
+
+        return map;
+    }
+
+    @Override
+    public int updateObject(SysRole entity, Integer[] menuIds) {
+        if(entity==null)
+            throw new IllegalArgumentException("角色信息不能为空");
+        if(StringUtils.isNullOrEmpty(entity.getName()))
+            throw new  IllegalArgumentException("角色不能为空");
+        if(menuIds==null||menuIds.length==0)
+            throw new IllegalArgumentException("必须为角色分配一个资源");
+        int rows=sysRoleMapper.updateObject(entity);
+        sysRoleMenuMapper.deleteObjectsByRoleId(entity.getId());
         sysRoleMenuMapper.insertObject(entity.getId(),menuIds);
         return rows;
     }

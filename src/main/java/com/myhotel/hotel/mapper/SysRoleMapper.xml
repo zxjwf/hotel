@@ -28,6 +28,27 @@
               values
               (null,#{name},#{note},#{createdTime},#{modifiedTime},#{createdUser},#{modifiedUser})
     </insert>
+
+    <select id="doFindObjectById" resultType="com.myhotel.hotel.pojo.SysRole" parameterType="int">
+          select * from sys_roles where id=#{id}
+    </select>
+
+    <update id="updateObject" parameterType="com.myhotel.hotel.pojo.SysRole">
+          update sys_roles
+          <set>
+              <if test="name!=null and name!=''">
+                  name=#{name},
+              </if>
+              <if test="note!=null and note!=''">
+                  note=#{note},
+              </if>
+              <if test="modifiedUser!=null and modifiedUser!=''">
+                  modifiedUser=#{modifiedUser},
+              </if>
+              modifiedTime=now()
+          </set>
+          where id=#{id}
+    </update>
     <sql id="queryWhereId">
         <where>
             <if test="name!=null and name!=''">
