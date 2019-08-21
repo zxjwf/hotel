@@ -96,6 +96,8 @@ public class SysUserController {
         entity.setSalt(salt);
         SimpleHash sHash=new SimpleHash("MD5",entity.getPassword(),salt);
         entity.setPassword(sHash.toString());
+        entity.setCreatedUser("sys");
+        entity.setModifiedUser("sys");
         int row=sysUserMapper.insertObject(entity);
         sysUserRoleMapper.insertObject(entity.getId(),roleIds);
         return  new JsonResult("save ok");

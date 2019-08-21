@@ -38,9 +38,9 @@
             useGeneratedKeys="true"
             keyProperty="id">
         insert into sys_users
-        (username,password,deptId,email,mobile,salt,valid,createdTime,modifiedTime,createdUser,modifiedUser)
+        (user_id,user_name,password,deptId,email,mobile,salt,valid,createdTime,modifiedTime,createdUser,modifiedUser)
         values
-        (#{username},#{password},#{deptId},#{email},#{mobile},#{salt},#{valid},
+        (#{userId},#{userName},#{password},#{deptId},#{email},#{mobile},#{salt},#{valid},
         now(),now(),#{createdUser},#{modifiedUser})
 
     </insert>
