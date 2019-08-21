@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface SysUserRoleMapper {
+    int insertObject(@Param("userId") Integer userId,
+                     @Param("roleIds") Integer[] roleIds);
 
     int deleteObjectsByRoleId(@Param("id") Integer id);
 }

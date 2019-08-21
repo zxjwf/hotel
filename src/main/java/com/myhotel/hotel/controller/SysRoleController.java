@@ -3,6 +3,7 @@ package com.myhotel.hotel.controller;
 
 import com.myhotel.common.vo.JsonResult;
 import com.myhotel.common.vo.PageObject;
+import com.myhotel.hotel.mapper.SysRoleMapper;
 import com.myhotel.hotel.pojo.SysRole;
 import com.myhotel.hotel.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import java.util.Map;
 public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
-
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
     @RequestMapping("doRoleListUI.do")
     public String doRoleListUI(){
         return "pages/sys/role_list";
@@ -65,5 +67,10 @@ public class SysRoleController {
             Integer[] menuIds){
         sysRoleService.updateObject(entity,menuIds);
         return  new JsonResult("update ok");
+    }
+    @RequestMapping("doFindRoles.do")
+    @ResponseBody
+    public JsonResult doFindObjects(){
+        return  new JsonResult(sysRoleMapper.doFindObjects());
     }
 }

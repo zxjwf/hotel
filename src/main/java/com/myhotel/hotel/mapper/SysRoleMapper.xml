@@ -49,6 +49,12 @@
           </set>
           where id=#{id}
     </update>
+
+    <select id="doFindObjects" resultType="com.myhotel.common.vo.CheckBox">
+        select id,name from sys_roles
+
+
+    </select>
     <sql id="queryWhereId">
         <where>
             <if test="name!=null and name!=''">

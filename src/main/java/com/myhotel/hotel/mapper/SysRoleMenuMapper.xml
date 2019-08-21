@@ -31,4 +31,5 @@
         where menu_id=#{menuId}
     </delete>
 
+
 </mapper>

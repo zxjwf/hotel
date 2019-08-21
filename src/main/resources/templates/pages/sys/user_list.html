@@ -106,10 +106,11 @@
        var btn=$(this);
 	   $.post(url,params,function(result){
     	   if(result.state==1){
-    		   alert(result.message);
-    		   //doGetObjects();//重新查询刷新
+    		   //alert(result.message);
+               doGetObjects();
     		   //优化方式实现
     		   doEditRow(btn,valid);
+
     	   }else{
     		   alert(result.message);
     	   }

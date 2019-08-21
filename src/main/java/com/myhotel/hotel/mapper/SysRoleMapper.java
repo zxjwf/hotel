@@ -1,5 +1,6 @@
 package com.myhotel.hotel.mapper;
 
+import com.myhotel.common.vo.CheckBox;
 import com.myhotel.hotel.pojo.SysRole;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,7 @@ public interface SysRoleMapper {
     SysRole doFindObjectById(@Param("id") Integer id);
 
     int updateObject(SysRole entit);
+
+    List<CheckBox> doFindObjects();
 
 }

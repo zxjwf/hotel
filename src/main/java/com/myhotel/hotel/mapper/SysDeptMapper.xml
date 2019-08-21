@@ -6,4 +6,8 @@
     <select id="findById" resultType="com.myhotel.hotel.pojo.SysDepts">
         select * from sys_depts where id=#{id}
     </select>
+
+    <select id="doFindZTreeNodes" resultType="com.myhotel.common.vo.Node">
+        select id,name,parentId from sys_depts
+    </select>
 </mapper>

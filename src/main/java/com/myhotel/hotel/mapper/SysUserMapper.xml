@@ -23,6 +23,27 @@
         select count(*) from sys_users;
         <include refid="queryWhereId"/>
     </select>
+
+    <update id="validById">
+        update sys_users
+        set valid=#{valid},
+             modifiedUser=#{modifiedUser},
+             modifiedTime=now()
+        where id=#{id}
+
+    </update>
+
+    <insert id="insertObject"
+            parameterType="com.myhotel.hotel.pojo.SysUser"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into sys_users
+        (username,password,deptId,email,mobile,salt,valid,createdTime,modifiedTime,createdUser,modifiedUser)
+        values
+        (#{username},#{password},#{deptId},#{email},#{mobile},#{salt},#{valid},
+        now(),now(),#{createdUser},#{modifiedUser})
+
+    </insert>
     <sql id="queryWhereId">
         <where>
             <if test="username!=null and username!=''">
