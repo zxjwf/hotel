@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myhotel.hotel.mapper.SysUserMapper">
+    <resultMap id="sysUserMap" type="com.myhotel.hotel.pojo.SysUserDeptResult">
+        <association property="sysDept"
+                     column="deptId"
+                     select="com.myhotel.hotel.mapper.SysDeptMapper.findById">
+
+        </association>
+
+    </resultMap>
+
+    <select id="doFindPageObjects" resultMap="sysUserMap">
+        select * from sys_users
+        <include refid="queryWhereId"/>
+        limit #{startIndex},#{pageSize}
+        
+    </select>
+
+    <select id="getRowCount" resultType="int">
+        select count(*) from sys_users;
+        <include refid="queryWhereId"/>
+    </select>
+    <sql id="queryWhereId">
+        <where>
+            <if test="username!=null and username!=''">
+                username like concat("%",#{username},"%")
+            </if>
+        </where>
+    </sql>
+</mapper>
