@@ -15,9 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.SimpleTimeZone;
-import java.util.UUID;
+import java.util.*;
 import java.util.jar.JarEntry;
 
 @Controller
@@ -101,5 +99,21 @@ public class SysUserController {
         int row=sysUserMapper.insertObject(entity);
         sysUserRoleMapper.insertObject(entity.getId(),roleIds);
         return  new JsonResult("save ok");
+    }
+
+    @RequestMapping("doFindObjectById.do")
+    @ResponseBody
+    public JsonResult doFindObjectById(Integer id){
+
+        if (id==null||id<=0)
+            throw new ServiceException("参数数据不合法");
+
+        SysUserDeptResult user=sysUserMapper.doFindObjectById(id);
+        List<Integer> roleIds=sysUserRoleMapper.doFindRoleIdsByUserId(id);
+        Map<String,Object> map=new HashMap<>();
+        map.put("user",user);
+        map.put("roleIds",roleIds);
+
+        return new JsonResult(map);
     }
 }

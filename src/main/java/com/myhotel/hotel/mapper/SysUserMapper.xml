@@ -44,6 +44,11 @@
         now(),now(),#{createdUser},#{modifiedUser})
 
     </insert>
+
+    <select id="doFindObjectById" resultType="com.myhotel.hotel.pojo.SysUserDeptResult" parameterType="int">
+        select * from sys_users
+        where id=#{id}
+    </select>
     <sql id="queryWhereId">
         <where>
             <if test="username!=null and username!=''">

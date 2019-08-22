@@ -22,4 +22,7 @@ public interface SysUserMapper {
 
     int insertObject(SysUser entity);
 
+    SysUserDeptResult doFindObjectById(Integer id);
+
+
 }

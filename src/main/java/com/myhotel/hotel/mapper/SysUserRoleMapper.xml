@@ -18,4 +18,8 @@
             (#{userId},#{item})
         </foreach>
     </insert>
+    <select id="doFindRoleIdsByUserId" resultType="int">
+        select * from sys_user_roles
+        where user_id=#{userId}
+    </select>
 </mapper>
