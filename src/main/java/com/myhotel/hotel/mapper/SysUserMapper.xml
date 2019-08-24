@@ -13,7 +13,8 @@
     </resultMap>
 
     <select id="doFindPageObjects" resultMap="sysUserMap">
-        select * from sys_users
+        select *
+        from sys_users
         <include refid="queryWhereId"/>
         limit #{startIndex},#{pageSize}
         
@@ -52,7 +53,7 @@
     <sql id="queryWhereId">
         <where>
             <if test="username!=null and username!=''">
-                username like concat("%",#{username},"%")
+                user_name like concat("%",#{username},"%")
             </if>
         </where>
     </sql>

@@ -6,6 +6,7 @@ import java.util.Date;
 public class SysUserDeptResult implements Serializable {
     private static final long serialVersionUID=5477389876913514596L;
     private Integer id;
+    private String userId;
     private String userName;
     private String password;
     private String salt;
@@ -15,8 +16,16 @@ public class SysUserDeptResult implements Serializable {
     private SysDepts sysDept;
     private Date createdTime;
     private Date modifiedTime;
-    private String createdUseer;
+    private String createdUser;
     private String modifiedUser;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;
@@ -98,12 +107,12 @@ public class SysUserDeptResult implements Serializable {
         this.modifiedTime = modifiedTime;
     }
 
-    public String getCreatedUseer() {
-        return createdUseer;
+    public String getCreatedUser() {
+        return createdUser;
     }
 
-    public void setCreatedUseer(String createdUseer) {
-        this.createdUseer = createdUseer;
+    public void setCreatedUser(String createdUseer) {
+        this.createdUser = createdUseer;
     }
 
     public String getModifiedUser() {

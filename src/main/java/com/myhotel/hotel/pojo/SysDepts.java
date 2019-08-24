@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SysDepts implements Serializable {
-    private static final long serialVersionUID=5477389876913514597L;
+    private static final long serialVersionUID=5477389876913514599L;
     private Integer id;
     private String name;
     private Integer parentId;
